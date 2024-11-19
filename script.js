@@ -131,20 +131,20 @@ function detectCollisions() {
 
     // Ball and paddle
     if (
-      ballX > paddleX &&                      // Ball is within the left edge of the paddle
-      ballX < paddleX + PADDLE_WIDTH &&        // Ball is within the right edge of the paddle
-      ballY + BALL_RADIUS > paddleY           // Ball is touching the top of the paddle
+      ballX > paddleX && // Ball is within the left edge of paddle
+      ballX < paddleX + PADDLE_WIDTH && // Ball is within the right edge of paddle
+      ballY + BALL_RADIUS > paddleY // Ball is touching the top of paddle
     ) {
-      ballYchange = -ballYchange; // Reverse vertical direction when hitting the paddle
+      ballYchange = -ballYchange; // Reverse vertical direction 
 
       // Ball bounces differently depending on where it hits the paddle
       const paddleCenterX = paddleX + PADDLE_WIDTH / 2;
       const ballDistFromCenter = ballX - paddleCenterX;
 
-      if (ballDistFromCenter < 0) { // Ball hits the left side of the paddle
-        ballXchange = -Math.abs(ballXchange); // Ball moves left after hitting the left side
-      } else if (ballDistFromCenter > 0) { // Ball hits the right side of the paddle
-        ballXchange = Math.abs(ballXchange); // Ball moves right after hitting the right side
+      if (ballDistFromCenter < 0) { // Ball hits the left side of paddle
+        ballXchange = -Math.abs(ballXchange); // Ball moves left after hitting left side
+      } else if (ballDistFromCenter > 0) { // Ball hits the right side of paddle
+        ballXchange = Math.abs(ballXchange); // Ball moves right after hitting right side
       }
       
     }
@@ -154,26 +154,26 @@ function detectCollisions() {
       for (let c = 0; c < BRICK_COLS; c++) {
         const brick = bricks[r][c];
         if (
-          brick.visible &&                         // Check if the brick is still visible
-          ballX > brick.x &&                       // Ball is to the right of the left edge of the brick
-          ballX < brick.x + BRICK_WIDTH &&         // Ball is to the left of the right edge of the brick
-          ballY > brick.y &&                       // Ball is below the top edge of the brick
-          ballY < brick.y + BRICK_HEIGHT          // Ball is above the bottom edge of the brick
+          brick.visible && // Check if the brick is still visible
+          ballX > brick.x && // Ball is to the right of the left edge of brick
+          ballX < brick.x + BRICK_WIDTH &&// Ball is to the left of the right edge of brick
+          ballY > brick.y && // Ball is below the top edge of brick
+          ballY < brick.y + BRICK_HEIGHT // Ball is above the bottom edge of brick
         ) {
-          ballYchange = -ballYchange; // Reverse vertical direction when hitting the brick
-          brick.visible = false;      // Make the brick disappear
-          score++;                    // Increment score for destroyed brick
+          ballYchange = -ballYchange; // Reverse vertical direction 
+          brick.visible = false; // Make brick not visible
+          score++; // Increment score 
           if (score > highScore) {
-            highScore = score;        // Update high score
+            highScore = score; // Update high score
             localStorage.setItem("highScore", highScore); // Save high score in localStorage
           }
         }
       }
     }
 
-    // Ball out of bounds (bottom edge)
+    // Ball touches bottom edge
     if (ballY + BALL_RADIUS > canvas.height) {
-      isGameOver = true; // Set game over when ball goes out of bounds
+      isGameOver = true; // Set game over 
     }
 }
 
@@ -183,7 +183,7 @@ function gameOver() {
     ctx.font = "70px 'ArcadeClassic', sans-serif"; // Set size and font
     ctx.fillStyle = "white"; // Set color
     ctx.textAlign = "center"; // Center text
-    ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2); // Display main message
+    ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2); // Display message
     ctx.font = "20px Arial";
     ctx.fillText("Press 'R' to restart", canvas.width / 2, canvas.height / 2 + 50); 
   }
@@ -193,7 +193,7 @@ function gameOver() {
     ctx.font = "70px 'ArcadeClassic', sans-serif"; // Set size and font
     ctx.fillStyle = "white"; // Set color
     ctx.textAlign = "center"; // Center text
-    ctx.fillText("YOU WIN!", canvas.width / 2, canvas.height / 2); // Display main message
+    ctx.fillText("YOU WIN!", canvas.width / 2, canvas.height / 2); // Display message
     ctx.font = "20px Arial";
     ctx.fillText("Press 'R' to restart", canvas.width / 2, canvas.height / 2 + 50); 
   }
