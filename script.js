@@ -57,7 +57,7 @@ function drawPaddle() {
   ctx.shadowOffsetY = 4;
 
   //Set color
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "red";
 
   // Draw paddle
   ctx.fillRect(paddleX, paddleY, PADDLE_WIDTH, PADDLE_HEIGHT);
